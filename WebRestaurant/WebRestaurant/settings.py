@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-1lu0ley=)0pl&-m4p9wth0bu%_kre1lt%fi2$!w!5to0m6uu+m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'WebRestaurant',
 ]
 
 MIDDLEWARE = [
