@@ -1,14 +1,15 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <title>Login Form Design One | Fazt</title>
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href='{% static "css/main.css"%}'>
   </head>
   <body>
 
     <div class="login-box">
-      <img src="img/icon.jpg" class="avatar" alt="Avatar Image">
+      <img src='{% static "img/icon.jpg"%}' class="avatar" alt="Avatar Image">
       <h1>Entre aqui</h1>
       <form>
         <!-- USERNAME INPUT -->
@@ -19,7 +20,7 @@
         <input type="password" placeholder="Ingrese Contraseña">
         <input type="submit" value="Iniciar Sesion">
         <a href="#">¿Olvidaste tu contraseña?</a><br>
-        <a href="#">¿No tienes una cuenta?</a>
+        <a href="{% url 'cliente:registro' %}">¿No tienes una cuenta?</a>
       </form>
     </div>
   </body>
