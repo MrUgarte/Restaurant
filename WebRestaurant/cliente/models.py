@@ -6,17 +6,16 @@ class Usuario(models.Model):
     user = models.CharField(max_length=100)
     password=models.CharField(max_length=100)
     Email=models.EmailField(max_length=200)
-
-
-class Sesion(models.model):
-    user = models.CharField(max_length=100)
-    password=models.CharField(max_length=100)
-
-    def _str_(self):
+    
+    def __str__(self):
         return self.user
 
-class Productos(models.model):
+
+class Productos(models.Model):
     ID_Producto=models.UUIDField(primary_key=True,default=uuid.uuid4,help_text='id unica para producto')
     Nombre_producto=models.CharField(max_length=100)
-    Stock=models.IntegerField(blank=True,Null=True)
+    Stock=models.IntegerField(blank=True,null=True)
+
+    def __str__(self):
+        return self.ID_Producto
 
