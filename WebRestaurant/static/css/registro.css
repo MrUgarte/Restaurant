@@ -12,7 +12,7 @@ body {
 
 .login-box {
   width: 320px;
-  height: 420px;
+  height: 500px;
   background: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
   top: 50%;
@@ -86,10 +86,4 @@ body {
 
 .login-box a:hover {
   color: rgb(0, 0, 0);
-}
-
-.error{
-  text-align: center;
-  color: rgb(255, 255, 255);
-  padding-top: 350px;
 }

@@ -9,4 +9,4 @@ class ClienteListViews(View):
         context={
 
         }   
-        return render(request, 'client_list.html', context)
+        return render(request, 'registro.html', context)

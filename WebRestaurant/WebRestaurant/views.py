@@ -7,3 +7,10 @@ class HomeView(View):
 
         }
         return render(request,'index.html',context)
+
+class ErrorView(View):
+    def get(self, request, *args, **kwargs):
+        context={
+
+        }
+        return render(request,'NoDisponible.html',context)
