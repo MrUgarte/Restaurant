@@ -9,3 +9,4 @@ def contacto(request):
 
 def galeria(request):
     return render(request, 'galeria.html')
+
