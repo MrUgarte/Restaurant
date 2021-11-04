@@ -39,6 +39,8 @@ header > div {
 
 .logo {
     width: 100px;
+    height: 80px;
+    margin-top: 10px;
     margin-left: 20px;
 }
 
@@ -264,4 +266,10 @@ textarea {
         padding:20px 0;
     }
 
+}
+
+#nss{
+    width: 1390px;
+    height: 300px;
+ 
 }

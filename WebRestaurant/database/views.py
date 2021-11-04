@@ -1,8 +1,13 @@
 from django.shortcuts import render
+from .models import plato
 
 # Create your views here.
 def home(request):
-    return render(request, 'home.html')
+    platos = plato.objects.all()
+    data = {
+        'platos': platos
+    }
+    return render(request, 'home.html',data)
 
 def contacto(request):
     return render(request, 'contacto.html')
