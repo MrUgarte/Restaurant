@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RestaurantModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="productos">
+    <Key>
+      <PropertyRef Name="Id_Producto" />
+    </Key>
+    <Property Name="Id_Producto" Type="int" Nullable="false" />
+    <Property Name="Nombre_Producto" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Stock" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Restaurant.dbo.Usuario' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Nombre" />
+      <PropertyRef Name="Rut" />
+      <PropertyRef Name="contraseña" />
+      <PropertyRef Name="email" />
+      <PropertyRef Name="TipoUsuario" />
+    </Key>
+    <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Rut" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="contraseña" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="TipoUsuario" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="RestaurantModelStoreContainer">
+    <EntitySet Name="productos" EntityType="Self.productos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Usuario].[Nombre] AS [Nombre], 
+    [Usuario].[Rut] AS [Rut], 
+    [Usuario].[contraseña] AS [contraseña], 
+    [Usuario].[email] AS [email], 
+    [Usuario].[TipoUsuario] AS [TipoUsuario]
+    FROM [dbo].[Usuario] AS [Usuario]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,38 @@
+create database "Restaurant"
+
+use Restaurant
+              
+create table Usuario (
+	Nombre nvarchar(100) not null,
+	Rut nvarchar(10) not null,
+	contraseña nvarchar(100) not null ,
+	email nvarchar(200) not null,
+	TipoUsuario nvarchar(20)not null
+	)
+
+
+insert into Usuario values ('felipe','199056492', 'admin','fel.gaetea@duocuc.cl','Administrador')
+select * from Usuario
+delete from Usuario
+drop table Usuario;
+
+
+create table productos (
+	Id_Producto int not null,
+	Nombre_Producto nvarchar(30) not null,
+	Stock int not null ,
+	
+	)
+	alter table productos
+	add constraint id_Producto primary key (id_Producto)   
+go
+
+
+
+insert into productos values ('1', 'arroz', '34');
+insert into productos values ('2', 'fideos','53');
+
+
+Select*From productos
+delete from productos
+drop table productos;
