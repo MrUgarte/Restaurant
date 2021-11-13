@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import plato
 from .forms import ContactoForm, PlatoForm
 
@@ -54,3 +54,27 @@ def listar_productos(request):
     }
 
     return render(request,'administrador/productos/listar.html', data)
+
+def modificar_producto(request, id):
+    
+    pla = get_object_or_404(plato, id=id)
+
+    data = {
+        'form': PlatoForm(instance=pla)
+    }
+
+    if request.method == 'POST':
+       formulario = PlatoForm(data=request.POST, instance= pla ,files=request.FILES)
+       if formulario.is_valid():
+           formulario.save()
+           return redirect(to="listar_productos")
+       else:
+           data["form"] = formulario
+
+    return render(request, 'administrador/productos/modificar.html',data)
+
+def eliminar_producto(request, id):
+    
+    producto = get_object_or_404(plato, id=id)
+    producto.delete()
+    return redirect(to="listar_productos")

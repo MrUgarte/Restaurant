@@ -14,6 +14,7 @@
                 <th>Precio</th>
                 <th>Descripcion</th>
                 <th>Imagen</th>
+                <th>Opciones</th>
             </tr>
         
             {% for p in productos %}
@@ -23,6 +24,11 @@
                 <td>{{ p.precio | intcomma }}</td>
                 <td>{{ p.descripcion | title }}</td>
                 <td>{{ p.imagen}}</td>
+                <td>
+                    <a href="{% url 'modificar-producto' p.id %}" class="btn btn-info btn-sm">modificar</a>
+                    <a href="{% url 'eliminar-producto' p.id %}" class="btn btn-danger btn-sm">eliminar</a>
+                </td>
+                
             </tr>
             
             {% endfor %}
