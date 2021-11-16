@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import plato
+from .models import plato, Contacto
 from .forms import ContactoForm, PlatoForm
 
 # Create your views here.
@@ -78,3 +78,15 @@ def eliminar_producto(request, id):
     producto = get_object_or_404(plato, id=id)
     producto.delete()
     return redirect(to="listar_productos")
+
+def home_administrador(request):
+    return render(request, 'administrador/home_administrador.html')
+
+def listar_contactos(request):
+    contactos = Contacto.objects.all()
+
+    data = {
+        'contactos': contactos
+    }
+
+    return render(request,'administrador/usuarios/listarContactos.html', data)

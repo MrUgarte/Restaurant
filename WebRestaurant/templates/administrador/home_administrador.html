@@ -1,0 +1,54 @@
+{% extends 'administrador/base_administrador.html' %}
+
+{% block contenido %}
+{% load humanize %}
+
+<br>
+<div class="card">
+    <div class="card-body">
+        <h2>Administración productos</h2>
+        <hr>
+        <table class="table table-striped table-hover table-responsive-sm">
+         
+
+            <tr>
+                <a href="{% url 'agregar_producto' %}">
+                    <button>Agregar platillo</button>
+                 </a>
+                 <br>
+                 <a href="{% url 'listar_productos' %}">
+                    <button>Vista y modificación de platillos</button>
+                 </a>
+              
+            </tr>
+     
+           
+
+        </table>
+
+    </div>
+    <br>
+    <div class="card-body">
+        <h2>Administración Usuarios y Contacto</h2>
+        <hr>
+        <table class="table table-striped table-hover table-responsive-sm">
+         
+            
+            <tr>
+                <a href="{% url 'listar_contactos' %}">
+                    <button>Vista mensajes Contactos</button>
+                 </a>
+              
+            </tr>
+
+           
+
+        </table>
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}

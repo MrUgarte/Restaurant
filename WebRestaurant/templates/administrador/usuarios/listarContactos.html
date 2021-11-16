@@ -1,0 +1,39 @@
+{% extends 'administrador/base_administrador.html' %} 
+
+{% block contenido %}
+{% load humanize %}
+
+<br>
+<div class="card">
+    <div class="card-body">
+        <h2>Listado de mensajes contacto</h2>
+        <hr>
+        <table class="table table-striped table-hover table-responsive-sm">
+            <tr>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Tipo consulta/th>
+                <th>Mensaje</th>
+               
+            </tr>
+        
+            {% for p in contactos %}
+        
+            <tr>
+                <td>{{ p.nombre | title }}</td>
+                <td>{{ p.correo | title }}</td>
+                <td>{{ p.tipo_consulta | title }}</td>
+                <td>{{ p.mensaje | title }}</td>
+
+            </tr>
+            
+            {% endfor %}
+        </table>
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}
