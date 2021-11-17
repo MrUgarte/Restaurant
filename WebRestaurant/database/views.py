@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import plato, Contacto
 from .forms import ContactoForm, PlatoForm
+from django.contrib import messages
 
 # Create your views here.
 def home(request):
@@ -20,7 +21,8 @@ def contacto(request):
         formulario = ContactoForm(data=request.POST)
         if formulario.is_valid():
             formulario.save()
-            data["mensaje"] = "contacto guardado"
+            messages.success(request, "Enviado correctamente")
+            return redirect(to="contacto")
         else:
             data["form"] = formulario
             
@@ -39,7 +41,8 @@ def agregar_producto(request):
         formulario = PlatoForm(data=request.POST, files=request.FILES)
         if formulario.is_valid():
             formulario.save()
-            data["mensaje"] = "guardado correctamente"
+            messages.success(request, "Creado correctamente")
+            return redirect(to="listar_productos")
         else:
             data["form"] = formulario
 
@@ -67,6 +70,7 @@ def modificar_producto(request, id):
        formulario = PlatoForm(data=request.POST, instance= pla ,files=request.FILES)
        if formulario.is_valid():
            formulario.save()
+           messages.success(request, "Modificado correctamente")
            return redirect(to="listar_productos")
        else:
            data["form"] = formulario
@@ -77,6 +81,7 @@ def eliminar_producto(request, id):
     
     producto = get_object_or_404(plato, id=id)
     producto.delete()
+    messages.success(request, "Eliminado correctamente")
     return redirect(to="listar_productos")
 
 def home_administrador(request):
@@ -90,3 +95,11 @@ def listar_contactos(request):
     }
 
     return render(request,'administrador/usuarios/listarContactos.html', data)
+
+
+def eliminar_contacto(request, id):
+    
+    contacto = get_object_or_404(Contacto, id=id)
+    contacto.delete()
+    messages.success(request, "Eliminado correctamente")
+    return redirect(to="listar_contactos")

@@ -1,5 +1,27 @@
 {% extends 'administrador/base_administrador.html' %} 
 
+{% block js %}
+<script>
+    function eliminarProducto(id){
+        Swal.fire({
+            "title":"¿Estas seguro?",
+            "text":"esta acción no se puede deshacer",
+            "icon":"question",
+            "showCancelButton": true,
+            "cancelButtonText": "No, Cancelar",
+            "confirmButtonText":"Si, Eliminar",
+            "reverseButtons":true,
+            "confirmButtonColor":"#dc3545"
+        })
+        .then(function(result) {
+            if(result.isConfirmed){
+                window.location.href = "/eliminar-producto/"+id+"/"
+            }
+        })
+    }
+</script>
+{% endblock %}
+
 {% block contenido %}
 {% load humanize %}
 
@@ -26,7 +48,7 @@
                 <td>{{ p.imagen}}</td>
                 <td>
                     <a href="{% url 'modificar-producto' p.id %}" class="btn btn-info btn-sm">modificar</a>
-                    <a href="{% url 'eliminar-producto' p.id %}" class="btn btn-danger btn-sm">eliminar</a>
+                    <a href="#" onclick="eliminarProducto({{ p.id }})" class="btn btn-danger btn-sm">eliminar</a>
                 </td>
                 
             </tr>

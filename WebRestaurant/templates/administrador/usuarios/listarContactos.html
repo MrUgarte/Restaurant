@@ -1,5 +1,28 @@
 {% extends 'administrador/base_administrador.html' %} 
 
+
+{% block js %}
+<script>
+    function eliminarContacto(id){
+        Swal.fire({
+            "title":"¿Estas seguro?",
+            "text":"esta acción no se puede deshacer",
+            "icon":"question",
+            "showCancelButton": true,
+            "cancelButtonText": "No, Cancelar",
+            "confirmButtonText":"Si, Eliminar",
+            "reverseButtons":true,
+            "confirmButtonColor":"#dc3545"
+        })
+        .then(function(result) {
+            if(result.isConfirmed){
+                window.location.href = "/eliminar-contactos/"+id+"/"
+            }
+        })
+    }
+</script>
+{% endblock %}
+
 {% block contenido %}
 {% load humanize %}
 
@@ -14,6 +37,7 @@
                 <th>Correo</th>
                 <th>Tipo consulta/th>
                 <th>Mensaje</th>
+                <th>Opciones</th>
                
             </tr>
         
@@ -24,7 +48,7 @@
                 <td>{{ p.correo | title }}</td>
                 <td>{{ p.tipo_consulta | title }}</td>
                 <td>{{ p.mensaje | title }}</td>
-
+                <td><a href="#" onclick="eliminarContacto({{ p.id }})"  class="btn btn-danger btn-sm">eliminar</a></td>
             </tr>
             
             {% endfor %}
