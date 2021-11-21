@@ -1,7 +1,10 @@
+from django.core import paginator
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import plato, Contacto
 from .forms import ContactoForm, PlatoForm
 from django.contrib import messages
+from django.core.paginator import Paginator
+from django.http import Http404
 
 # Create your views here.
 def home(request):
@@ -51,9 +54,17 @@ def agregar_producto(request):
 
 def listar_productos(request):
     productos = plato.objects.all()
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(productos, 5)
+        productos = paginator.page(page)
+    except:
+        raise Http404
 
     data = {
-        'productos': productos
+        'entity': productos,
+        'paginator': paginator
     }
 
     return render(request,'administrador/productos/listar.html', data)
