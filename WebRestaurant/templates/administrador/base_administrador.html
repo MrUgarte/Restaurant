@@ -32,6 +32,18 @@
                         <a href="{% url 'home_administrador' %}"> Inicio administrador</a>
                     </li>
                     
+                    {% if user.is_authenticated %}
+                    <li>
+                        <a href="{% url 'logout' %}">Cerrar sesión</a>
+                    </li>
+                    <li>
+                        <a href="#">@{{ user.username }}</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="{% url 'login' %}">Iniciar sesión</a>
+                    </li>
+                    {% endif %}
                 </ul>
             </nav>
 

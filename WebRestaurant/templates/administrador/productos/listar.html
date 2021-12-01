@@ -47,8 +47,12 @@
                 <td>{{ p.descripcion | title }}</td>
                 <td>{{ p.imagen}}</td>
                 <td>
+                    {% if perms.database.change_plato %}
                     <a href="{% url 'modificar-producto' p.id %}" class="btn btn-info btn-sm">modificar</a>
+                    {% endif %}
+                    {% if perms.database.delete_plato %}
                     <a href="#" onclick="eliminarProducto({{ p.id }})" class="btn btn-danger btn-sm">eliminar</a>
+                    {% endif %}
                 </td>
                 
             </tr>

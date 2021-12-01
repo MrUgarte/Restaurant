@@ -12,13 +12,16 @@
          
 
             <tr>
+                {% if perms.database.add_plato %}
                 <a href="{% url 'agregar_producto' %}">
                     <button>Agregar platillo</button>
-                 </a>
-                 <br>
-                 <a href="{% url 'listar_productos' %}">
+                </a>
+                {% endif %}
+                <br>
+                
+                <a href="{% url 'listar_productos' %}">
                     <button>Vista y modificación de platillos</button>
-                 </a>
+                </a>
               
             </tr>
      
