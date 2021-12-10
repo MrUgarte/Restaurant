@@ -7,7 +7,7 @@ from django.core.paginator import Paginator
 from django.http import Http404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required, permission_required
-
+from django.contrib.auth import get_user_model
 # Create your views here.
 def home(request):
     platos = plato.objects.all()
@@ -100,6 +100,7 @@ def eliminar_producto(request, id):
     messages.success(request, "Eliminado correctamente")
     return redirect(to="listar_productos")
 
+@permission_required('admin.view_log_entry')
 def home_administrador(request):
     return render(request, 'administrador/home_administrador.html')
 
@@ -112,6 +113,25 @@ def listar_contactos(request):
 
     return render(request,'administrador/usuarios/listarContactos.html', data)
 
+def listar_usuarios(request):
+    User = get_user_model()
+    users = User.objects.all()
+
+    data = {
+        'users': users
+    }
+
+    return render(request,'administrador/usuarios/listarUsuarios.html',data)
+
+def eliminar_usuario(request, id):
+    
+    User = get_user_model()
+    
+    usuario = get_object_or_404(User, id=id)
+
+    usuario.delete()
+    messages.success(request, "Eliminado correctamente")
+    return redirect(to="listar_usuarios")
 
 def eliminar_contacto(request, id):
     

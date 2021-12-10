@@ -28,6 +28,7 @@
             
             <nav id="nav">
                 <ul>
+                    
                     <li>
                         <a href="{% url 'home' %}"> Inicio </a>
                     </li>
@@ -46,6 +47,16 @@
                     {% else %}
                     <li>
                         <a href="{% url 'login' %}">Iniciar sesión</a>
+                    </li>
+                    {% endif %}
+
+                    {% if user.is_authenticated and user.username == 'admin' %}
+                    <li>
+                        <a href="{% url 'home_administrador' %}">Administración</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="{% url 'home' %}"></a>
                     </li>
                     {% endif %}
                 </ul>
